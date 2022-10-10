@@ -11,6 +11,7 @@ class Comments extends Component
 {
     public $body;
     public $post;
+    public $replay = [];
     public $comments = [];
 
     public function mount($post)
@@ -32,6 +33,17 @@ class Comments extends Component
         ]);
         $newComment->save();
         $this->comments->prepend($newComment);
+        $this->body = '';
+    }
+    public function replay($id)
+    {
+        $newReplay = new Comment([
+            'body' => $this->body,
+            'parent_id' => $id,
+            'commentable_id' => $this->post->id,
+            'commentable_type' => "App\Models\Post",
+        ]);
+        $newReplay->save();
         $this->body = '';
     }
 

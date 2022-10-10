@@ -12,11 +12,17 @@ class Comment extends Model
     protected $fillable = [
         'body',
         'commentable_id',
-        'commentable_type'
+        'commentable_type',
+        'parent_id'
     ];
 
     public function commentable()
     {
         return $this->morphTo();
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(Comment::class, 'parent_id');
     }
 }
