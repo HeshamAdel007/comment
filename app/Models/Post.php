@@ -17,6 +17,7 @@ class Post extends Model
 
     public function comments()
     {
-        return $this->morphMany(Comment::class, 'commentable')->where('parent_id', '=', Null);
+        return $this->morphMany(Comment::class, 'commentable')
+            ->where('parent_id', '=', Null)->latest();
     }
 }
