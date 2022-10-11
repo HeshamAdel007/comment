@@ -3,6 +3,7 @@
         <div class="form-group">
             <label for="comment">Add Comment</label>
             <textarea class="form-control" wire:model="body"></textarea>
+            @error('body') <span class="error">{{ $message }}</span> @enderror
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
@@ -33,6 +34,7 @@
             <div class="form-group">
                 <label for="comment">Add replay</label>
                 <textarea class="form-control" wire:model="reply"></textarea>
+                @error('reply') <span class="error">{{ $message }}</span> @enderror
             </div>
             <div wire:click="replay" class="btn btn-primary">replay</button>
             </div>
